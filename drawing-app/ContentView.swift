@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-struct Line {
-    var points: [CGPoint]
-    var color: Color
-}
-
 struct ContentView: View {
     var body: some View {
         DrawingView()

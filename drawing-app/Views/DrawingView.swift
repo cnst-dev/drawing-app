@@ -10,51 +10,61 @@ import SwiftUI
 struct DrawingView: View {
     private let colors = [Color.green, .orange, .blue, .red, .pink, .black, .purple]
 
+    var screenShot: Image?
+
     @State private var lines = [Line]()
     @State private var selectedColor = Color.orange
+    @State private var isRendering = false
 
     var body: some View {
         VStack {
             HStack {
                 ForEach(colors, id: \.self) { colorButton(color: $0) }
+                magicButton()
                 clearButton()
             }
-            Canvas { context, _ in
-                for line in lines {
-                    var path = Path()
-                    path.addLines(line.points)
-                    context
-                        .stroke(path,
-                                with: .color(line.color),
-                                style: StrokeStyle(lineWidth: 5,
-                                                   lineCap: .round,
-                                                   lineJoin: .round))
-                }
-            }
-            .gesture(
-                DragGesture(minimumDistance: 0, coordinateSpace: .local)
-                    .onChanged { value in
-                        let position = value.location
-                        if value.translation == .zero {
-                            lines.append(Line(points: [position], color: selectedColor))
-                        } else {
-                            guard let lastIdx = lines.indices.last else {
-                                return
+            image(from: lines)
+                .gesture(
+                    DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                        .onChanged { value in
+                            let position = value.location
+                            if value.translation == .zero {
+                                lines.append(Line(points: [position], color: selectedColor))
+                            } else {
+                                guard let lastIdx = lines.indices.last else {
+                                    return
+                                }
+                                lines[lastIdx].points.append(position)
                             }
-                            lines[lastIdx].points.append(position)
                         }
-                    }
-            )
+                )
+        }.sheet(isPresented: $isRendering) {
+            RenderView(renderedImage: image(from: lines))
+
         }
     }
 
-    @ViewBuilder
-    func colorButton(color: Color) -> some View {
+    private func image(from lines: [Line]) -> Image {
+        Image(size: CGSize(width: 300, height: 300)) { context in
+            for line in lines {
+                var path = Path()
+                path.addLines(line.points)
+                context
+                    .stroke(path,
+                            with: .color(line.color),
+                            style: StrokeStyle(lineWidth: 5,
+                                               lineCap: .round,
+                                               lineJoin: .round))
+            }
+        }
+    }
+
+    private func colorButton(color: Color) -> some View {
         Button {
             selectedColor = color
         } label: {
             Image(systemName: "circle.fill")
-                .font(.largeTitle)
+                .font(.title)
                 .foregroundColor(color)
                 .mask {
                     Image(systemName: "pencil.tip")
@@ -63,14 +73,24 @@ struct DrawingView: View {
         }
     }
 
-    @ViewBuilder
-    func clearButton() -> some View {
+    private func clearButton() -> some View {
         Button {
             lines = []
         } label: {
             Image(systemName: "pencil.tip.crop.circle.badge.minus")
-                .font(.largeTitle)
+                .font(.title)
                 .foregroundColor(.gray)
+        }
+    }
+
+    @ViewBuilder
+    func magicButton() -> some View {
+        Button {
+            isRendering = true
+        } label: {
+            Image(systemName: "lasso.and.sparkles")
+                .font(.title)
+                .foregroundColor(.cyan)
         }
     }
 }
