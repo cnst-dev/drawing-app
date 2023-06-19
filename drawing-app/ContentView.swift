@@ -7,15 +7,14 @@
 
 import SwiftUI
 
+struct Line {
+    var points: [CGPoint]
+    var color: Color
+}
+
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+        DrawingView()
     }
 }
 
