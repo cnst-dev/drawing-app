@@ -10,10 +10,8 @@ import SwiftUI
 struct DrawingView: View {
     private let colors = [Color.green, .orange, .blue, .red, .pink, .black, .purple]
 
-    var screenShot: Image?
-
     @State private var lines = [Line]()
-    @State private var selectedColor = Color.orange
+    @State private var selectedColor = Color.black
     @State private var isRendering = false
 
     var body: some View {
@@ -39,13 +37,12 @@ struct DrawingView: View {
                         }
                 )
         }.sheet(isPresented: $isRendering) {
-            RenderView(renderedImage: image(from: lines))
-
+            RenderView()
         }
     }
 
     private func image(from lines: [Line]) -> Image {
-        Image(size: CGSize(width: 300, height: 300)) { context in
+        Image(size: CGSize(width: 512, height: 512)) { context in
             for line in lines {
                 var path = Path()
                 path.addLines(line.points)

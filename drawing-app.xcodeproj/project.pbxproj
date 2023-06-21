@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF7EE6332A41806E009BB504 /* Replicate in Frameworks */ = {isa = PBXBuildFile; productRef = CF7EE6322A41806E009BB504 /* Replicate */; };
+		CF7EE6352A418353009BB504 /* Replicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7EE6342A418353009BB504 /* Replicate.swift */; };
 		CFBE89AE2A404F2400F9C3FD /* DrawingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE89AD2A404F2400F9C3FD /* DrawingApp.swift */; };
 		CFBE89B02A404F2400F9C3FD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE89AF2A404F2400F9C3FD /* ContentView.swift */; };
 		CFBE89B22A404F2600F9C3FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFBE89B12A404F2600F9C3FD /* Assets.xcassets */; };
@@ -17,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF7EE6342A418353009BB504 /* Replicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Replicate.swift; sourceTree = "<group>"; };
 		CFBE89AA2A404F2400F9C3FD /* drawing-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "drawing-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBE89AD2A404F2400F9C3FD /* DrawingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingApp.swift; sourceTree = "<group>"; };
 		CFBE89AF2A404F2400F9C3FD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF7EE6332A41806E009BB504 /* Replicate in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				CFBE89C22A405AF900F9C3FD /* Line.swift */,
+				CF7EE6342A418353009BB504 /* Replicate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -109,6 +114,9 @@
 			dependencies = (
 			);
 			name = "drawing-app";
+			packageProductDependencies = (
+				CF7EE6322A41806E009BB504 /* Replicate */,
+			);
 			productName = "drawing-app";
 			productReference = CFBE89AA2A404F2400F9C3FD /* drawing-app.app */;
 			productType = "com.apple.product-type.application";
@@ -137,6 +145,9 @@
 				Base,
 			);
 			mainGroup = CFBE89A12A404F2400F9C3FD;
+			packageReferences = (
+				CF7EE6312A41806E009BB504 /* XCRemoteSwiftPackageReference "replicate-swift" */,
+			);
 			productRefGroup = CFBE89AB2A404F2400F9C3FD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -185,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFBE89BE2A40580F00F9C3FD /* DrawingView.swift in Sources */,
+				CF7EE6352A418353009BB504 /* Replicate.swift in Sources */,
 				CFBE89B02A404F2400F9C3FD /* ContentView.swift in Sources */,
 				CFBE89C02A405AC500F9C3FD /* RenderView.swift in Sources */,
 				CFBE89AE2A404F2400F9C3FD /* DrawingApp.swift in Sources */,
@@ -389,6 +401,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CF7EE6312A41806E009BB504 /* XCRemoteSwiftPackageReference "replicate-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/replicate/replicate-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CF7EE6322A41806E009BB504 /* Replicate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF7EE6312A41806E009BB504 /* XCRemoteSwiftPackageReference "replicate-swift" */;
+			productName = Replicate;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CFBE89A22A404F2400F9C3FD /* Project object */;
 }
