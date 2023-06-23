@@ -10,11 +10,14 @@ import SwiftUI
 struct RenderView: View {
     @State private var prompt = "Hand drawing modern table lamp render"
     @State private var prediction: StableDiffusion.Prediction?
-    var sketch = UIImage(named: "lamp.jpg")!
+    let sketch: UIImage
 
     var body: some View {
         Form {
             Section {
+                Image(uiImage: sketch)
+                    .resizable()
+                    .frame(width: 300, height: 300)
                 TextField(text: $prompt,
                           prompt: Text("Enter a prompt to render an image"),
                           axis: .vertical,
@@ -69,26 +72,26 @@ struct RenderView: View {
                 .padding()
                 .listRowBackground(Color.clear)
                 .listRowInsets(.init())
-            } else {
-                Image(uiImage: sketch)
             }
         }
 
         Spacer()
     }
-    func generate() async throws {
+    private func generate() async throws {
+        let data = sketch.jpegData(compressionQuality: 100)!.uriEncoded(mimeType: "image/jpeg")
+        let input = StableDiffusion.Input(image: data, prompt: prompt)
         prediction = try await StableDiffusion.predict(with: client,
-                                                       input: .init(image: sketch.jpegData(compressionQuality: 100)!.uriEncoded(mimeType: "image/jpeg"), prompt: prompt))
+                                                       input: input)
         try await prediction?.wait(with: client)
     }
 
-    func cancel() async throws {
+    private func cancel() async throws {
         try await prediction?.cancel(with: client)
     }
 }
 
 struct RenderView_Previews: PreviewProvider {
     static var previews: some View {
-        RenderView()
+        RenderView(sketch: UIImage(named: "lamp")!)
     }
 }

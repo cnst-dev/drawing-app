@@ -45,7 +45,10 @@ struct DrawingView: View {
     }
 
     private func image(from lines: [Line]) -> Image {
-        Image(size: CGSize(width: 512, height: 512)) { context in
+        guard lines.count > 0 else {
+            return Image("lamp")
+        }
+        return Image(size: CGSize(width: 512, height: 512)) { context in
             for line in lines {
                 var path = Path()
                 path.addLines(line.points)
