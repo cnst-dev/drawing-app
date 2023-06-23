@@ -36,8 +36,11 @@ struct DrawingView: View {
                             }
                         }
                 )
-        }.sheet(isPresented: $isRendering) {
-            RenderView()
+            Spacer()
+        }
+        .sheet(isPresented: $isRendering) {
+            let renderer = ImageRenderer(content: image(from: lines))
+            RenderView(sketch: renderer.uiImage!)
         }
     }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF421FFC2A45A13400024F40 /* API.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF421FFB2A45A13400024F40 /* API.plist */; };
 		CF7EE6332A41806E009BB504 /* Replicate in Frameworks */ = {isa = PBXBuildFile; productRef = CF7EE6322A41806E009BB504 /* Replicate */; };
 		CF7EE6352A418353009BB504 /* Replicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7EE6342A418353009BB504 /* Replicate.swift */; };
 		CFBE89AE2A404F2400F9C3FD /* DrawingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBE89AD2A404F2400F9C3FD /* DrawingApp.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF421FFB2A45A13400024F40 /* API.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = API.plist; sourceTree = "<group>"; };
 		CF7EE6342A418353009BB504 /* Replicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Replicate.swift; sourceTree = "<group>"; };
 		CFBE89AA2A404F2400F9C3FD /* drawing-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "drawing-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFBE89AD2A404F2400F9C3FD /* DrawingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingApp.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				CFBE89AD2A404F2400F9C3FD /* DrawingApp.swift */,
 				CFBE89AF2A404F2400F9C3FD /* ContentView.swift */,
 				CFBE89B12A404F2600F9C3FD /* Assets.xcassets */,
+				CF421FFB2A45A13400024F40 /* API.plist */,
 				CFBE89B32A404F2600F9C3FD /* Preview Content */,
 			);
 			path = "drawing-app";
@@ -163,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFBE89B52A404F2600F9C3FD /* Preview Assets.xcassets in Resources */,
+				CF421FFC2A45A13400024F40 /* API.plist in Resources */,
 				CFBE89B22A404F2600F9C3FD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct RenderView: View {
-    @State private var prompt = ""
-    @State private var prediction: StableDiffusion.Prediction? = nil
-    var sketch = UIImage(named: "turtle.png")!
+    @State private var prompt = "Hand drawing modern table lamp render"
+    @State private var prediction: StableDiffusion.Prediction?
+    var sketch = UIImage(named: "lamp.jpg")!
 
     var body: some View {
         Form {
