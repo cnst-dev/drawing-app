@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RenderView: View {
-    @State private var prompt = "Hand drawing modern table lamp render"
+    @State private var prompt = "table lamp"
     @State private var prediction: StableDiffusion.Prediction?
     let sketch: UIImage
 
@@ -19,7 +19,7 @@ struct RenderView: View {
                     .resizable()
                     .frame(width: 300, height: 300)
                 TextField(text: $prompt,
-                          prompt: Text("Enter a prompt to render an image"),
+                          prompt: Text("Product description"),
                           axis: .vertical,
                           label: {})
                 Button("Render") {
@@ -79,7 +79,8 @@ struct RenderView: View {
     }
     private func generate() async throws {
         let data = sketch.jpegData(compressionQuality: 100)!.uriEncoded(mimeType: "image/jpeg")
-        let input = StableDiffusion.Input(image: data, prompt: prompt)
+        let str = "Hand drawing modern \(prompt) render"
+        let input = StableDiffusion.Input(image: data, prompt: str)
         prediction = try await StableDiffusion.predict(with: client,
                                                        input: input)
         try await prediction?.wait(with: client)
